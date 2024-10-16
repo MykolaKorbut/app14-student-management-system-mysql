@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, \
      QVBoxLayout, QComboBox, QToolBar, QStatusBar, QMessageBox
 from PyQt6.QtGui import QAction, QIcon
 import sys
-import sqlite3
+#import sqlite3
 import mysql.connector
 
 
@@ -204,7 +204,7 @@ class DeleteDialog(QDialog):
         index = main_window.table.currentRow()
         student_id = main_window.table.item(index, 0).text()
 
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
         cursor.execute("DELETE from students WHERE id = %s", (student_id, ))
         connection.commit()
